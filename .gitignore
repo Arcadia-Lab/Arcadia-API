@@ -1,0 +1,4 @@
+node_modules
+.env
+src/script.ts
+src/script.js
