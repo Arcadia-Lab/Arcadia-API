@@ -6,7 +6,7 @@ export interface ITwitterAccount extends Document {
   fullName: string;
   username: string;
   twitterId: string;
-  membershipNumber: string;
+  twitterUrl: string;
 }
 
 export interface ITweet extends Document {
@@ -28,7 +28,7 @@ const twitterAccountSchema: Schema = new Schema({
   fullName: { type: String, required: true },
   username: { type: String, required: true },
   twitterId: { type: String, required: true, unique: true },
-  membershipNumber: { type: String, required: true}
+  twitterUrl:{ type: String, required: true }
 });
 
 const tweetSchema: Schema = new Schema({
