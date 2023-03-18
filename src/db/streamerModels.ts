@@ -68,19 +68,18 @@ const narrativeSchema: Schema = new Schema({
 
 
 // Models
-const TwitterAccount: Model<ITwitterAccount> = mongoose.model<ITwitterAccount>(
+export const TwitterAccount: Model<ITwitterAccount> = mongoose.model<ITwitterAccount>(
   'TwitterAccount',
   twitterAccountSchema
 );
 
-const Tweet: Model<ITweet> = mongoose.model<ITweet>(
+export const Tweet: Model<ITweet> = mongoose.model<ITweet>(
   'Tweet', 
   tweetSchema
 );
 
-const Narrative: Model<INarrative> = mongoose.model<INarrative>(
+export const Narrative: Model<INarrative> = mongoose.model<INarrative>(
   'Narrative',
   narrativeSchema
 );
 
-export { TwitterAccount, Tweet,  Narrative };
