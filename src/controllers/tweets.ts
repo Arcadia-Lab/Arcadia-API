@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { Tweet, Narrative } from '../db/streamerModels';
+import { Tweet, Narrative, TwitterAccount } from '../db/streamerModels';
 
 export const getAllTweets = async (req: express.Request, res: express.Response) => {
     try {
@@ -33,9 +33,15 @@ export const getAllTweets = async (req: express.Request, res: express.Response) 
       }
       console.log(narrative)
   
-      const tweets = await Tweet.find({ narrative: { $in: [narrative._id] } });
-      console.log(tweets)
-      return res.status(200).json({ tweets });
+      const tweetsByNarrative = await Tweet.find({ narrative: { $in: [narrative._id] } });
+
+      for (let tweet of tweetsByNarrative) {
+        const account = await TwitterAccount.findOne({ _id: tweet.twitterAccount})
+        tweet.twitterAccount = account
+        tweet.narrative = narrativeName
+      }
+
+      return res.status(200).json({ tweetsByNarrative });
   
     } catch (error) {
       console.error(error);
