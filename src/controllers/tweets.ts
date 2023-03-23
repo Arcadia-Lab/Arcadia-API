@@ -38,7 +38,6 @@ export const getAllTweets = async (req: express.Request, res: express.Response) 
       for (let tweet of tweetsByNarrative) {
         const account = await TwitterAccount.findOne({ _id: tweet.twitterAccount})
         tweet.twitterAccount = account
-        tweet.narrative = narrativeName
       }
 
       return res.status(200).json({ tweetsByNarrative });
